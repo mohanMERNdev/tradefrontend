@@ -1,13 +1,66 @@
 body {
+  background-color: black;
+  color: grey;
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+header {
+  background-color: orange;
+  padding: 10px;
+  text-align: center;
+}
+
+.container {
+  padding: 20px;
+}
+
+.input-section {
+  margin-bottom: 20px;
+}
+
+.input-section input {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid grey;
+  color: grey;
+  background-color: black;
+}
+
+.input-section .button {
+  padding: 5px 10px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.input-section .buy {
+  background-color: green;
+}
+
+.input-section .sell {
+  background-color: red;
+}
+
+.tables {
+  display: flex;
+  justify-content: space-between;
+}
+
+.table-container {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th, .table-container td {
+  border: 1px solid grey;
+  padding: 8px;
+  text-align: center;
 }
