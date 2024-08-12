@@ -8,7 +8,7 @@ class Orders extends Component {
     completedOrders: [],
     quantity: '',
     price: '',
-    type: 'buy', // Default type
+    type: 'buy',
   };
 
   async componentDidMount() {
@@ -21,9 +21,9 @@ class Orders extends Component {
   }
 
   fetchOrders = async () => {
-    const buyResponse = await fetch('http://localhost:5000/buy_pending_orders');
-    const sellResponse = await fetch('http://localhost:5000/sell_pending_orders');
-    const completedResponse = await fetch('http://localhost:5000/completed_orders');
+    const buyResponse = await fetch('https://tradebackend-r4uh.onrender.com/buy_pending_orders');
+    const sellResponse = await fetch('https://tradebackend-r4uh.onrender.com/sell_pending_orders');
+    const completedResponse = await fetch('https://tradebackend-r4uh.onrender.com/completed_orders');
 
     const buyOrders = await buyResponse.json();
     const sellOrders = await sellResponse.json();
@@ -40,7 +40,7 @@ class Orders extends Component {
     const { quantity, price, type } = this.state;
     if (!quantity || !price) return;
 
-    await fetch(`http://localhost:5000/${type}`, {
+    await fetch(`https://tradebackend-r4uh.onrender.com/${type}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ quantity, price }),
@@ -59,6 +59,7 @@ class Orders extends Component {
           <h1>Spot Trading Application</h1>
         </header>
         <div className="input-section">
+          <h1 className='head1'>USDT / INR</h1>
           <input
             type="number"
             name="quantity"
@@ -73,21 +74,23 @@ class Orders extends Component {
             placeholder="Price"
             onChange={this.handleInputChange}
           />
-          <button
-            className="button buy"
-            onClick={() => this.setState({ type: 'buy' }, this.handleOrderSubmit)}
-          >
-            Buy
-          </button>
-          <button
-            className="button sell"
-            onClick={() => this.setState({ type: 'sell' }, this.handleOrderSubmit)}
-          >
-            Sell
-          </button>
+          <div>
+            <button
+              className="button buy"
+              onClick={() => this.setState({ type: 'buy' }, this.handleOrderSubmit)}
+            >
+              Buy
+            </button>
+            <button
+              className="button sell"
+              onClick={() => this.setState({ type: 'sell' }, this.handleOrderSubmit)}
+            >
+              Sell
+            </button>
+          </div>
         </div>
         <div className="tables">
-          <div className="table-container">
+          <div className="table-container buy-table">
             <h2>Pending Buy Orders</h2>
             <table>
               <thead>
@@ -106,7 +109,7 @@ class Orders extends Component {
               </tbody>
             </table>
           </div>
-          <div className="table-container">
+          <div className="table-container sell-table">
             <h2>Pending Sell Orders</h2>
             <table>
               <thead>
@@ -126,7 +129,7 @@ class Orders extends Component {
             </table>
           </div>
         </div>
-        <div className="table-container">
+        <div className="table-container completed-table">
           <h2>Completed Orders</h2>
           <table>
             <thead>
